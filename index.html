@@ -5,230 +5,82 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="color-scheme" content="dark" />
 <title>Tobyworld Lore Land Deed Viewer — ToadAid</title>
-<style>
-:root{--bg:#07110d;--panel:#0d1a14;--panel2:#12231b;--line:#234032;--text:#ecfff4;--muted:#9ebbaa;--green:#7ee2a8;--green2:#39b875;--gold:#e7c66d;--danger:#ff8e8e;--shadow:0 18px 60px rgba(0,0,0,.34)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 25% -5%,#173829 0,transparent 26rem),linear-gradient(180deg,#07110d,#050a08 72%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
-button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{width:min(1480px,100%);margin:auto;padding:18px clamp(14px,3vw,38px) 70px}.top{display:flex;gap:16px;align-items:center;justify-content:space-between;margin:6px 0 20px}.brand{display:flex;gap:13px;align-items:center}.logo{width:48px;height:48px;border:1px solid #315443;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,#172d22,#0b1711);font-size:26px;box-shadow:var(--shadow)}h1{font-size:clamp(20px,3vw,34px);line-height:1;margin:0}.sub{color:var(--muted);font-size:13px;margin-top:6px}.pill{border:1px solid #2d5c43;background:#10261b;color:#9ff2bd;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}.hero{border:1px solid var(--line);background:linear-gradient(145deg,rgba(18,35,27,.96),rgba(10,20,15,.95));border-radius:24px;padding:18px;box-shadow:var(--shadow)}.heroGrid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(360px,1fr);gap:16px;align-items:start}.leftStack{display:grid;gap:16px;align-content:start;min-width:0}.box{border:1px solid #1f392c;background:#0a1510;border-radius:18px;padding:15px}.box h2{font-size:14px;margin:0 0 10px;color:#c7e8d3}.label{display:block;color:var(--muted);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin:12px 0 6px}.input,textarea{width:100%;border:1px solid #294738;border-radius:12px;background:#07100c;color:var(--text);padding:11px 12px;outline:none}.input:focus,textarea:focus{border-color:#4f9f72;box-shadow:0 0 0 3px rgba(79,159,114,.12)}textarea{min-height:122px;resize:vertical;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;line-height:1.5}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.row .fit{flex:0 0 auto}.btn{border:1px solid #38684d;background:#163322;color:#dff7e7;padding:10px 14px;border-radius:12px;font-weight:800}.btn:hover{filter:brightness(1.12)}.btn.primary{background:linear-gradient(135deg,#55cc87,#2e9b61);border-color:#6cda99;color:#04130a}.btn.ghost{background:#0a1510;border-color:#294738;color:#b8d7c4}.btn.danger{border-color:#704040;color:#ffc4c4}.mini{font-size:11px;color:var(--muted);line-height:1.45}.contractNote{margin-top:8px;padding:9px 10px;border-radius:10px;background:#0d1d15;border:1px solid #1d382a;font-size:11px;color:#acc9b7}.cacheBox{margin-top:12px;padding:10px;border-radius:12px;background:#0b1912;border:1px solid #244331}.cacheTop{display:flex;gap:8px;justify-content:space-between;align-items:flex-start}.cacheTitle{font-size:11px;font-weight:900;color:#c9ead5;text-transform:uppercase;letter-spacing:.06em}.cacheStatus{font-size:10px;color:#90b09d;line-height:1.4;margin-top:3px}.cacheActions{display:flex;gap:7px;margin-top:9px}.cacheActions button{flex:1;padding:7px 8px;font-size:10px}.status{margin-top:14px;border:1px solid #223d30;background:#08130e;border-radius:14px;padding:12px 13px;display:flex;gap:12px;align-items:flex-start;min-height:49px}.dot{width:10px;height:10px;border-radius:50%;background:#577064;box-shadow:0 0 0 4px rgba(87,112,100,.12);margin-top:4px;flex:0 0 auto}.status.live .dot{background:#52db87;box-shadow:0 0 0 4px rgba(82,219,135,.12)}.status.err .dot{background:#ff8181;box-shadow:0 0 0 4px rgba(255,129,129,.12)}.statusText{font-size:12px;line-height:1.45;color:#c6dfd0}.progress{height:6px;background:#0b1b13;border:1px solid #1b3527;border-radius:999px;overflow:hidden;margin-top:10px}.bar{height:100%;width:0;background:linear-gradient(90deg,#4ecb80,#94e4b2);transition:width .2s ease}.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:18px 0}.stat{border:1px solid var(--line);background:rgba(13,26,20,.9);padding:14px;border-radius:16px}.stat b{display:block;font-size:26px}.stat span{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.07em}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:15px 0}.toolbar .input{max-width:330px}.seg{display:flex;border:1px solid #294738;border-radius:12px;overflow:hidden;background:#08130e}.seg button{border:0;background:transparent;color:#92b5a0;padding:10px 13px;font-weight:800}.seg button.active{background:#183423;color:#dff9e8}.privacy{display:flex;align-items:center;gap:7px;color:#aac6b4;font-size:12px}.wallet{border:1px solid var(--line);background:rgba(10,20,15,.88);border-radius:20px;margin:16px 0;overflow:hidden}.walletHead{padding:14px 16px;display:flex;gap:10px;align-items:center;justify-content:space-between;border-bottom:1px solid #193124}.walletTitle{display:flex;flex-direction:column;gap:4px}.walletTitle b{font-size:16px}.addr{color:#86a993;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;word-break:break-all}.count{font-size:11px;padding:6px 9px;border-radius:999px;background:#173523;color:#91e3ad;border:1px solid #2c5b41;white-space:nowrap}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;padding:14px}.card{border:1px solid #264435;border-radius:18px;overflow:hidden;background:#0b1711;transition:transform .15s ease,border-color .15s ease;min-width:0}.card:hover{transform:translateY(-2px);border-color:#467858}.art{aspect-ratio:1/1;position:relative;background:linear-gradient(145deg,#173023,#0b1912);overflow:hidden}.art img{width:100%;height:100%;object-fit:cover;display:block}.placeholder{position:absolute;inset:0;display:grid;place-items:center;color:#5c7d69;font-size:44px}.art.imageLoaded .placeholder{display:none}.art.imageFailed .placeholder{font-size:0}.art.imageFailed .placeholder:after{content:'Artwork unavailable';font-size:12px;color:#7fa08c;padding:12px;text-align:center}.badge{position:absolute;top:10px;left:10px;background:rgba(5,14,9,.78);backdrop-filter:blur(6px);border:1px solid rgba(148,228,178,.25);border-radius:999px;padding:5px 8px;font-size:10px;font-weight:900}.body{padding:12px}.name{font-weight:900;font-size:15px;margin-bottom:5px}.token{font-size:11px;color:#91ac9b;margin-bottom:11px}.traits{display:grid;grid-template-columns:1fr 1fr;gap:7px}.trait{background:#0e2117;border:1px solid #1c3829;border-radius:10px;padding:8px;min-width:0}.trait small{display:block;color:#789987;text-transform:uppercase;font-size:9px;font-weight:900;letter-spacing:.05em;margin-bottom:3px}.trait span{font-size:11px;color:#d7efe0;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.links{display:flex;gap:7px;margin-top:11px}.links a{flex:1;text-align:center;text-decoration:none;color:#b8d9c4;border:1px solid #2a4d39;border-radius:9px;padding:7px;font-size:10px;font-weight:800}.empty{border:1px dashed #2b4d3a;border-radius:18px;padding:34px 16px;text-align:center;color:#829f8d;margin:18px 0}.okTxt{color:#7ce0a5}.errTxt{color:#ff9898}.warn{color:#e7c66d}@media(max-width:920px){.heroGrid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.stat:last-child{grid-column:span 2}.top{align-items:flex-start}.pill{font-size:10px}.grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}}@media(max-width:560px){.wrap{padding:10px 10px 45px}.top{margin-top:4px}.logo{width:43px;height:43px;border-radius:14px;font-size:23px}h1{font-size:19px}.sub{font-size:11px}.hero{padding:12px;border-radius:18px}.box{padding:12px}.heroGrid{gap:12px}textarea{min-height:108px}.row{gap:8px}.row>*{min-width:100%}.stats{gap:8px}.stat{padding:11px}.stat b{font-size:22px}.toolbar{align-items:stretch}.toolbar .input{max-width:none;width:100%}.toolbar select{width:100%}.seg{width:max-content}.grid{grid-template-columns:1fr 1fr;gap:8px;padding:8px}.body{padding:9px}.name{font-size:13px}.trait{padding:6px}.trait span{font-size:10px}.links{flex-direction:column}.walletHead{padding:12px}.walletTitle b{font-size:14px}.addr{font-size:9px}}@media(max-width:390px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.top .pill{display:none}}
-</style>
+<link rel="stylesheet" href="viewer.css" />
 </head>
 <body>
 <div class="wrap">
   <div class="top">
-    <div class="brand"><div class="logo">🪷</div><div><h1>Tobyworld Lore Land Deed Viewer</h1><div class="sub">Unofficial community tool by ToadAid · read-only Base ownership · canonical metadata · locally cached artwork</div></div></div>
+    <div class="brand"><div class="logo" aria-label="Lotus">🪷</div><div><h1>Tobyworld Lore Land Deed Viewer</h1><div class="sub">Unofficial community tool by ToadAid · read-only Base ownership · canonical metadata · locally cached artwork</div></div></div>
     <div class="pill">● READ ONLY · BASE</div>
   </div>
+
   <section class="hero">
     <div class="heroGrid">
       <div class="leftStack">
         <div class="box">
-          <h2>1 · OUR WALLETS</h2>
+          <h2>1 · Wallets</h2>
           <div class="mini">One wallet per line. Use <b>Label,address</b> or just an address. A wallet can own any number of deeds.</div>
-          <textarea id="wallets" spellcheck="false" placeholder="W1,0x...\nW2,0x..."></textarea>
-          <div class="row" style="margin-top:10px"><button class="btn ghost" id="save">Save locally</button><button class="btn ghost" id="clear">Clear</button><button class="btn ghost" id="export">Export snapshot</button></div>
+          <textarea id="wallets" spellcheck="false" placeholder="W1,0x1234...\nW2,0xabcd...\nLore Vault,0x9876..."></textarea>
+          <div class="row" style="margin-top:10px">
+            <button class="btn ghost" id="saveBtn">Save locally</button>
+            <button class="btn ghost" id="clearBtn">Clear</button>
+            <button class="btn ghost" id="exportBtn">Export snapshot</button>
+          </div>
         </div>
+
         <div class="box">
-          <h2>2 · LOCAL CACHE</h2>
-          <div class="label">LOCAL ARTWORK HELPER</div>
-          <div class="contractNote" id="artworkHelperStatus">Checking localhost artwork helper…</div>
-          <div class="row" style="margin-top:9px"><button class="btn ghost" id="clearServerArtworkCache">Clear image cache</button></div>
-          <div class="contractNote">Artwork only. Run this folder with <b>serve-vault.py</b>. When metadata/IPFS images fail, the page asks the same-origin helper for <b>/api/artwork/&lt;tokenId&gt;</b>. The helper resolves OpenSea/SeaDN media server-side, downloads the image once, and serves a local cached byte thereafter. Base remains the sole ownership authority.</div>
+          <h2>2 · Local cache</h2>
+          <label class="label" style="margin-top:0">Artwork helper</label>
+          <div class="row" style="margin-top:8px">
+            <div class="input" id="artworkHelperStatus" style="flex:1;color:#a9c8b5">Checking <code>/api/health</code>…</div>
+            <button class="btn ghost fit" id="clearServerArtworkCacheBtn" type="button">Clear image cache</button>
+          </div>
+          <div class="contractNote"><b>Artwork only.</b> The loopback helper resolves OpenSea/SeaDN media server-side, caches image bytes locally, and never participates in ownership decisions.</div>
           <div class="cacheBox">
             <div class="cacheTop"><div><div class="cacheTitle">🪷 Contract ownership cache</div><div class="cacheStatus" id="cacheStatus">Checking local cache…</div></div></div>
-            <div class="cacheActions"><button class="btn ghost" id="rebuildCache">Rebuild full cache</button><button class="btn ghost danger" id="clearCache">Clear cache</button></div>
+            <div class="cacheActions"><button class="btn ghost" id="rebuildCacheBtn">Rebuild full cache</button><button class="btn ghost danger" id="clearCacheBtn">Clear cache</button></div>
           </div>
         </div>
       </div>
+
       <div class="box">
-        <h2>3 · CHAIN READER</h2>
-        <label class="label">LORE LAND CONTRACT</label>
+        <h2>3 · Chain reader</h2>
+        <label class="label">Lore Land contract</label>
         <input class="input" id="contract" value="0x0495601af6f86efb14c9d478ea46b2aa09cb164a" spellcheck="false" />
-        <div class="contractNote">Canonical Tobyworld Lore Land Deeds contract. The reader still verifies Base chain ID and that contract bytecode exists before scanning.</div>
-        <label class="label">BASE RPC</label><input class="input" id="rpc" value="https://mainnet.base.org" spellcheck="false" />
-        <div class="row"><div><label class="label">RPC CALLS / BURST</label><input class="input" id="burst" type="number" min="1" max="24" value="4" /></div><div><label class="label">DISCOVERY</label><input class="input" value="Cached contract index" readonly /></div></div>
-        <button class="btn primary" id="scan" style="width:100%;margin-top:14px">Refresh from Base</button>
-        <details style="margin-top:10px"><summary class="mini" style="cursor:pointer;font-weight:800">How the scan works</summary><div class="mini" style="margin-top:8px">The reader pins one Base block, reads <b>balanceOf()</b> for every wallet, then uses ERC-721 enumeration if the collection exposes it. Otherwise it keeps a local contract-wide ownership index built from canonical <b>Transfer</b> events. Later refreshes scan only blocks after the saved cache point. Every token mapped to your wallets is then re-checked with <b>ownerOf()</b> at the pinned block. The cache accelerates discovery; it never replaces live ownership verification.</div></details>
+        <div class="contractNote">Canonical Tobyworld Lore Land Deeds contract. The reader verifies Base chain ID and contract bytecode before scanning.</div>
+        <label class="label">Base RPC</label>
+        <input class="input" id="rpc" value="https://mainnet.base.org" spellcheck="false" />
+        <div class="row">
+          <div><label class="label">RPC calls / burst</label><input class="input" id="batchSize" value="4" inputmode="numeric" /></div>
+          <div><label class="label">Discovery</label><input class="input" value="Cached contract index" disabled /></div>
+        </div>
+        <button class="btn primary" id="scanBtn" style="width:100%;margin-top:16px">Refresh from Base</button>
+        <details><summary>How the scan works</summary><div class="mini" style="margin-top:7px">Every refresh first reads <code>balanceOf(wallet)</code> at one pinned Base block, so the live chain remains the authority. For this non-enumerable ERC-721, the first refresh builds a contract-wide ownership index by replaying standard <code>Transfer</code> events from deployment through the pinned block and stores only the current token → owner map locally in this browser. Later refreshes scan only blocks after the cached block, apply new transfers, select tokens whose cached owner is one of our wallets, and re-verify every selected token with <code>ownerOf()</code>. The cache is only an accelerator: expected <code>balanceOf()</code> and verified <code>ownerOf()</code> counts must match exactly or the refresh fails closed. “Rebuild full cache” discards no old cache until a fresh full index succeeds. Metadata is loaded after ownership is complete, with Blockscout fallback when tokenURI hosts block browser CORS. Artwork tries token metadata/IPFS first, then the local helper endpoint; the helper may resolve OpenSea/SeaDN media but never determines ownership. No signing, approvals, private keys, or transactions.</div></details>
       </div>
     </div>
-    <div class="status" id="status"><div class="dot"></div><div style="flex:1"><div class="statusText" id="statusText">Ready. Enter wallet addresses and refresh from Base.</div><div class="progress"><div class="bar" id="bar"></div></div></div></div>
+    <div class="status" id="status"><span class="dot"></span><div style="flex:1"><div class="statusText" id="statusText">Add wallet addresses, then tap <b>Refresh from Base</b>.</div><div class="progress"><div class="bar" id="bar"></div></div></div></div>
   </section>
-  <section class="stats">
-    <div class="stat"><b id="expected">—</b><span>Expected on-chain</span></div>
-    <div class="stat"><b id="verified">0</b><span>Verified deeds</span></div>
-    <div class="stat"><b id="walletCount">0</b><span>Wallets tracked</span></div>
-    <div class="stat"><b id="multiCount">0</b><span>Multi-deed wallets</span></div>
-    <div class="stat"><b id="block">—</b><span>Base block</span></div>
-  </section>
+
+  <div class="stats">
+    <div class="stat"><b id="statExpected">—</b><span>Expected on-chain</span></div>
+    <div class="stat"><b id="statDeeds">0</b><span>Verified deeds</span></div>
+    <div class="stat"><b id="statWallets">0</b><span>Wallets tracked</span></div>
+    <div class="stat"><b id="statMulti">0</b><span>Multi-deed wallets</span></div>
+    <div class="stat"><b id="statBlock">—</b><span>Base block</span></div>
+  </div>
+
   <div class="toolbar">
     <input class="input" id="search" placeholder="Search deed, wallet, trait…" />
-    <select class="input" id="walletFilter" style="max-width:230px"><option value="">All wallets</option></select>
-    <div class="seg"><button class="active" id="walletView">Wallet View</button><button id="galleryView">Gallery</button></div>
-    <label class="privacy"><input id="mask" type="checkbox" checked /> Mask addresses</label>
+    <select class="input" id="walletFilter" style="max-width:220px"><option value="">All wallets</option></select>
+    <div class="seg"><button id="walletView" class="active">Wallet View</button><button id="galleryView">Gallery</button></div>
+    <label class="privacy"><input type="checkbox" id="mask" checked /> Mask addresses</label>
   </div>
-  <main id="out"></main>
+
+  <div id="content"><div class="empty">No live deed data yet.<br><span class="mini">Your wallet list is stored only in this browser when you tap “Save locally”.</span></div></div>
+  <div class="foot">This tool is a local read-only viewer. The contract-wide ownership cache is stored only in this browser and is never treated as authority: every refresh reads live wallet balances and verifies the selected token owners on-chain at one pinned Base block. The first cache build can take about as long as the old full-history scan; later refreshes usually need only the blocks since the last cached block. Public RPC endpoints can be rate-limited, so the reader paces calls, retries transient 429/5xx errors, and fails closed on any ownership-count mismatch. Metadata/artwork are read separately from tokenURI with Blockscout media plus multi-gateway IPFS fallbacks. When those artwork URLs fail, the localhost helper resolves OpenSea/SeaDN display media and caches the actual image bytes on disk; it never participates in ownership decisions.</div>
 </div>
-<script>
-const $=s=>document.querySelector(s), norm=s=>String(s||'').toLowerCase();
-const els={wallets:$('#wallets'),contract:$('#contract'),rpc:$('#rpc'),burst:$('#burst'),scan:$('#scan'),save:$('#save'),clear:$('#clear'),export:$('#export'),status:$('#status'),statusText:$('#statusText'),bar:$('#bar'),expected:$('#expected'),verified:$('#verified'),walletCount:$('#walletCount'),multiCount:$('#multiCount'),block:$('#block'),search:$('#search'),walletFilter:$('#walletFilter'),walletView:$('#walletView'),galleryView:$('#galleryView'),mask:$('#mask'),out:$('#out'),cacheStatus:$('#cacheStatus'),rebuildCache:$('#rebuildCache'),clearCache:$('#clearCache'),artworkHelperStatus:$('#artworkHelperStatus'),clearServerArtworkCache:$('#clearServerArtworkCache')};
-const state={wallets:[],deeds:[],expected:null,walletBalances:new Map(),block:null,blockTag:'latest',contract:'',view:'wallet',scanning:false,scanComplete:false,discoveryMethod:'',pendingCache:null,forceCacheRebuild:false};
-const selectors={balanceOf:'70a08231',ownerOf:'6352211e',tokenURI:'c87b56dd',name:'06fdde03',tokenOfOwnerByIndex:'2f745c59',totalSupply:'18160ddd',tokenByIndex:'4f6ccce7'};
-const TRANSFER_TOPIC='0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';
-const DEFAULT_RPC='https://mainnet.base.org';
-const CACHE_VERSION=1;
-const CACHE_PREFIX='toadaidLoreVault.ownerIndex.v1:';
-const DEPLOY_BLOCK_HINT=49750000;
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-function escapeHTML(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-function shortAddr(a){return a?`${a.slice(0,6)}…${a.slice(-4)}`:''}
-function masked(a){return els.mask.checked?shortAddr(a):a}
-function addrOK(a){return /^0x[0-9a-fA-F]{40}$/.test(a)}
-function pad64(hexNo0x){return hexNo0x.padStart(64,'0')}
-function encAddr(a){return pad64(a.slice(2).toLowerCase())}
-function encUint(n){return BigInt(n).toString(16).padStart(64,'0')}
-function hexToBig(h){if(typeof h!=='string'||!/^0x[0-9a-fA-F]+$/.test(h))throw new Error(`Bad hex quantity: ${String(h)}`);return BigInt(h)}
-function bigToSafeNumber(b,label='value'){if(b>BigInt(Number.MAX_SAFE_INTEGER))throw new Error(`${label} exceeds browser safe integer range`);return Number(b)}
-function decodeAddrResult(h){if(typeof h!=='string'||!/^0x[0-9a-fA-F]{64,}$/.test(h))throw new Error('Invalid address result');return '0x'+h.slice(-40).toLowerCase()}
-function decodeAbiString(h){try{if(!h||h==='0x')return '';const x=h.slice(2);if(x.length===64){let bytes='';for(let i=0;i<64;i+=2){const n=parseInt(x.slice(i,i+2),16);if(n)bytes+=String.fromCharCode(n)}return bytes.trim()}const off=Number(BigInt('0x'+x.slice(0,64)))*2;const len=Number(BigInt('0x'+x.slice(off,off+64)));const data=x.slice(off+64,off+64+len*2);const arr=new Uint8Array(data.match(/.{1,2}/g).map(v=>parseInt(v,16)));return new TextDecoder().decode(arr)}catch{return ''}}
-function ipfsUrls(u){if(!u)return[];if(u.startsWith('ipfs://')){const p=u.slice(7).replace(/^ipfs\//,'');return [`https://ipfs.io/ipfs/${p}`,`https://cloudflare-ipfs.com/ipfs/${p}`,`https://gateway.pinata.cloud/ipfs/${p}`]}if(u.startsWith('ar://'))return [`https://arweave.net/${u.slice(5)}`];return [u]}
-function artworkHelperUrl(tokenId){const id=Number(tokenId);return Number.isSafeInteger(id)&&id>=0?`/api/artwork/${id}`:''}
-function allArtworkCandidates(d){const arr=[];for(const raw of d.imageCandidates||[])for(const u of ipfsUrls(raw))arr.push(u);const helper=artworkHelperUrl(d.tokenId);if(helper)arr.push(helper);return [...new Set(arr.filter(Boolean))]}
-function setStatus(msg,type='',pct=0){els.status.className='status'+(type?` ${type}`:'');els.statusText.innerHTML=msg;els.bar.style.width=`${Math.max(0,Math.min(100,pct))}%`}
-async function checkArtworkHelper(){
-  if(!els.artworkHelperStatus)return false;
-  try{
-    const r=await fetch('/api/health',{cache:'no-store'});
-    if(!r.ok)throw new Error(`HTTP ${r.status}`);
-    const j=await r.json();
-    if(!j?.ok||Number(j.chainId)!==8453||norm(j.contract)!==norm(els.contract.value.trim()))throw new Error('helper contract/chain binding mismatch');
-    els.artworkHelperStatus.innerHTML=`🟢 helper online · ${Number(j.cached_artworks||0).toLocaleString()} image${Number(j.cached_artworks||0)===1?'':'s'} cached${j.opensea_api_key?' · API key available':' · public-page resolver'}`;
-    return true;
-  }catch(e){els.artworkHelperStatus.innerHTML=`🟠 helper unavailable · run <b>python3 serve-vault.py</b> (or the Windows launcher) · ${escapeHTML(e.message||e)}`;return false}
-}
-async function clearServerArtworkCache(){
-  try{
-    const r=await fetch('/api/artwork-cache',{method:'DELETE'});
-    if(!r.ok)throw new Error(`HTTP ${r.status}`);
-    await checkArtworkHelper();
-    setStatus('Local artwork byte cache cleared. Ownership cache was not changed.','live',0);
-    render();
-  }catch(e){setStatus(`Artwork helper cache clear failed: ${escapeHTML(e.message||e)}`,'err',0)}
-}
-function parseWallets(){const lines=els.wallets.value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);const seen=new Set(),out=[];for(const line of lines){let label,address;if(line.includes(',')){const p=line.split(',');label=p.shift().trim();address=p.join(',').trim()}else{address=line;label=`W${out.length+1}`}if(!addrOK(address))throw new Error(`Invalid wallet address: ${address}`);address=norm(address);if(seen.has(address))continue;seen.add(address);out.push({label:label||`W${out.length+1}`,address})}if(!out.length)throw new Error('Enter at least one wallet address.');return out}
-function cacheKey(contract=els.contract.value.trim()){const c=norm(contract);return addrOK(c)?`${CACHE_PREFIX}8453:${c}`:null}
-function validateCache(raw,contract){
-  if(!raw||raw.version!==CACHE_VERSION||Number(raw.chainId)!==8453||norm(raw.contract)!==norm(contract))return null;
-  const deployment=Number(raw.deploymentBlock),last=Number(raw.lastScannedBlock);if(!Number.isSafeInteger(deployment)||!Number.isSafeInteger(last)||deployment<0||last<deployment)return null;
-  if(!raw.owners||typeof raw.owners!=='object'||Array.isArray(raw.owners))return null;
-  const owners={};for(const [id,owner] of Object.entries(raw.owners)){if(!/^\d+$/.test(id)||!addrOK(owner))return null;owners[String(BigInt(id))]=norm(owner)}
-  return{version:CACHE_VERSION,chainId:8453,contract:norm(contract),deploymentBlock:deployment,lastScannedBlock:last,owners,updatedAt:raw.updatedAt||null}
-}
-function loadOwnerCache(contract=els.contract.value.trim()){
-  const key=cacheKey(contract);if(!key)return null;
-  try{const raw=JSON.parse(localStorage.getItem(key));const valid=validateCache(raw,contract);if(!valid&&raw)localStorage.removeItem(key);return valid}catch{return null}
-}
-function saveOwnerCache(cache){
-  const key=cacheKey(cache.contract);if(!key)throw new Error('Cannot save cache for an invalid contract address.');
-  const payload={version:CACHE_VERSION,chainId:8453,contract:norm(cache.contract),deploymentBlock:cache.deploymentBlock,lastScannedBlock:cache.lastScannedBlock,owners:cache.owners,updatedAt:new Date().toISOString()};
-  try{localStorage.setItem(key,JSON.stringify(payload))}catch(e){throw new Error(`Ownership cache could not be saved locally: ${e.message||e}`)}
-  updateCacheUI(payload);
-}
-function deleteOwnerCache(contract=els.contract.value.trim()){const key=cacheKey(contract);if(key)localStorage.removeItem(key);updateCacheUI(null)}
-function updateCacheUI(cache=undefined){
-  if(!els.cacheStatus)return;
-  const contract=els.contract.value.trim();
-  if(!addrOK(contract)){els.cacheStatus.textContent='Enter a valid contract address.';return}
-  const c=cache===undefined?loadOwnerCache(contract):cache;
-  if(!c){els.cacheStatus.textContent='No cache yet · first refresh builds the contract-wide ownership index.';return}
-  const count=Object.keys(c.owners||{}).length;
-  els.cacheStatus.textContent=`Indexed ${count.toLocaleString()} live token owner${count===1?'':'s'} through Base block ${Number(c.lastScannedBlock).toLocaleString()} · saved locally.`;
-}
-function deedMatches(d){const q=els.search.value.trim().toLowerCase();const f=els.walletFilter.value;const bag=[d.name,d.tokenId,d.wallet.label,d.wallet.address,...Object.values(d.traits||{})].join(' ').toLowerCase();return(!q||bag.includes(q))&&(!f||norm(d.wallet.address)===f)}
-function card(d){const traits=Object.entries(d.traits||{}).slice(0,8);const os=`https://opensea.io/item/base/${state.contract}/${d.tokenId}`;const bs=`https://basescan.org/token/${state.contract}?a=${d.tokenId}`;const images=allArtworkCandidates(d);const artId=`art-${d.tokenId}-${Math.random().toString(36).slice(2)}`;return `<article class="card"><div class="art ${images.length?'':'imageFailed'}" id="${artId}">${images.length?`<img alt="${escapeHTML(d.name)}" loading="lazy" data-images='${escapeHTML(JSON.stringify(images))}' />`:''}<div class="placeholder">🪷</div><div class="badge">${escapeHTML(d.wallet.label)}</div></div><div class="body"><div class="name">${escapeHTML(d.name)}</div><div class="token">Token #${d.tokenId}${d.metadataError?' · metadata unavailable':' · metadata loaded'}</div>${traits.length?`<div class="traits">${traits.map(([k,v])=>`<div class="trait"><small>${escapeHTML(k)}</small><span title="${escapeHTML(v)}">${escapeHTML(v)}</span></div>`).join('')}</div>`:`<div class="trait"><small>Ownership</small><span>On-chain owner verified</span></div>`}<div class="links"><a target="_blank" rel="noopener" href="${os}">OpenSea</a><a target="_blank" rel="noopener" href="${bs}">BaseScan</a></div></div></article>`}
-function wireImages(){document.querySelectorAll('.art img[data-images]').forEach(img=>{let urls=[];try{urls=JSON.parse(img.dataset.images)}catch{}let i=0;const art=img.closest('.art');const tryNext=()=>{if(i>=urls.length){art.classList.add('imageFailed');img.remove();return}img.src=urls[i++]};img.onload=()=>{art.classList.add('imageLoaded');checkArtworkHelper()};img.onerror=tryNext;tryNext()})}
-function render(){const deeds=state.deeds.filter(deedMatches);els.expected.textContent=state.expected==null?'—':state.expected.toLocaleString();els.verified.textContent=state.deeds.length.toLocaleString();els.walletCount.textContent=state.wallets.length.toLocaleString();const by=new Map();for(const d of state.deeds)by.set(norm(d.wallet.address),(by.get(norm(d.wallet.address))||0)+1);els.multiCount.textContent=[...by.values()].filter(n=>n>1).length;els.block.textContent=state.block?Number(state.block).toLocaleString():'—';if(!state.scanComplete){els.out.innerHTML='<div class="empty">No verified deed set loaded yet.<br><small>Tap “Refresh from Base” to verify ownership live.</small></div>';return}if(!deeds.length){els.out.innerHTML='<div class="empty">No deeds match this filter.</div>';return}if(state.view==='gallery'){els.out.innerHTML=`<div class="wallet"><div class="grid">${deeds.map(card).join('')}</div></div>`;wireImages();return}const groups=[];for(const w of state.wallets){const ds=deeds.filter(d=>norm(d.wallet.address)===norm(w.address));if(ds.length)groups.push(`<section class="wallet"><div class="walletHead"><div class="walletTitle"><b>${escapeHTML(w.label)}</b><span class="addr">${escapeHTML(masked(w.address))}</span></div><span class="count">${ds.length} deed${ds.length===1?'':'s'}</span></div><div class="grid">${ds.map(card).join('')}</div></section>`)}els.out.innerHTML=groups.join('');wireImages()}
-function rebuildFilter(){const current=els.walletFilter.value;els.walletFilter.innerHTML='<option value="">All wallets</option>'+state.wallets.map(w=>`<option value="${norm(w.address)}">${escapeHTML(w.label)}</option>`).join('');if([...els.walletFilter.options].some(o=>o.value===current))els.walletFilter.value=current}
-async function rpcRaw(method,params=[],opts={}){const url=els.rpc.value.trim();const max=opts.retries??4;let last;for(let attempt=0;attempt<=max;attempt++){try{const ctrl=new AbortController();const t=setTimeout(()=>ctrl.abort(),20000);const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params}),signal:ctrl.signal});clearTimeout(t);let body=null;try{body=await res.json()}catch{}if(!res.ok)throw new Error(`HTTP ${res.status}${body?.error?.message?`: ${body.error.message}`:''}`);if(body?.error)throw new Error(`RPC ${body.error.code}: ${body.error.message}`);if(!body||!('result'in body))throw new Error('RPC response missing result');if(url===DEFAULT_RPC)await sleep(115);return body.result}catch(e){last=e;const s=String(e?.message||e).toLowerCase();const retry=attempt<max&&(s.includes('429')||s.includes('rate')||s.includes('limit')||s.includes('busy')||s.includes('timeout')||s.includes('abort')||s.includes('failed to fetch')||s.includes('502')||s.includes('503')||s.includes('504'));if(!retry)break;await sleep(Math.min(4500,500*2**attempt))}}throw new Error(`${method} failed after ${max+1} attempt${max?'s':''}: ${last?.message||last}`)}
-async function rpc(method,params=[],opts={}){return rpcRaw(method,params,opts)}
-async function ethCall(data,to=state.contract,block=state.blockTag){return rpc('eth_call',[{to,data},block])}
-function balanceData(a){return '0x'+selectors.balanceOf+encAddr(a)}function ownerData(id){return '0x'+selectors.ownerOf+encUint(id)}function tokenURIData(id){return '0x'+selectors.tokenURI+encUint(id)}function ownerIndexData(a,i){return '0x'+selectors.tokenOfOwnerByIndex+encAddr(a)+encUint(i)}function globalIndexData(i){return '0x'+selectors.tokenByIndex+encUint(i)}
-async function batch(items,{retries=3,pause=90}={}){const out=[];for(let i=0;i<items.length;i++){const it=items[i];let v=null,e=null;try{v=await rpc(it.method,it.params,{retries})}catch(x){e=x}out.push({key:it.key,result:v,error:e});if(pause)await sleep(pause)}return out}
-async function readWalletBalances(wallets){const results=await batch(wallets.map(w=>({key:norm(w.address),method:'eth_call',params:[{to:state.contract,data:balanceData(w.address)},state.blockTag]})),{retries:4,pause:80});let total=0;for(const r of results){if(r.error)throw new Error(`Wallet balance check failed for ${r.key}: ${r.error.message||r.error}`);const n=bigToSafeNumber(hexToBig(r.result),'wallet balance');state.walletBalances.set(r.key,n);total+=n}state.expected=total;render();return total}
-async function discoverByOwnerIndex(wallets,expected){let proof=[];for(const w of wallets){const n=state.walletBalances.get(norm(w.address))||0;for(let i=0;i<n;i++){try{const raw=await ethCall(ownerIndexData(w.address,i));proof.push({tokenId:bigToSafeNumber(hexToBig(raw),'token ID'),wallet:w})}catch{return null}}}if(proof.length!==expected)return null;state.discoveryMethod='tokenOfOwnerByIndex + ownerOf';return proof}
-async function discoverByGlobalEnumerable(wallets,expected){let supply;try{supply=bigToSafeNumber(hexToBig(await ethCall('0x'+selectors.totalSupply)),'totalSupply')}catch{return null}if(supply<expected||supply>20000)return null;const wanted=new Map(wallets.map(w=>[norm(w.address),w])),found=[];for(let i=0;i<supply;i++){let id;try{id=bigToSafeNumber(hexToBig(await ethCall(globalIndexData(i))),'token ID')}catch{return null}let owner;try{owner=decodeAddrResult(await ethCall(ownerData(id)))}catch{return null}const w=wanted.get(norm(owner));if(w)found.push({tokenId:id,wallet:w});if(i%20===0)setStatus(`Global ERC-721 enumeration… ${i+1}/${supply} · ${found.length}/${expected} matching deeds`,'',24+32*((i+1)/Math.max(supply,1)))}if(found.length!==expected)return null;state.discoveryMethod='tokenByIndex + ownerOf';return found}
-async function hasCodeAt(block){const code=await rpc('eth_getCode',[state.contract,'0x'+BigInt(block).toString(16)],{retries:3});return !!code&&code!=='0x'}
-async function findDeploymentBlock(end){
-  setStatus('Locating the contract deployment block for the ownership cache…','',24);
-  let hi=end,lo=0;
-  const hint=Math.min(end,DEPLOY_BLOCK_HINT);
-  try{if(await hasCodeAt(hint)){hi=hint}else{lo=hint+1}}catch{}
-  while(lo<hi){const mid=Math.floor((lo+hi)/2);if(await hasCodeAt(mid))hi=mid;else lo=mid+1}
-  const code=await rpc('eth_getCode',[state.contract,'0x'+BigInt(lo).toString(16)],{retries:3});
-  if(!code||code==='0x')throw new Error('Could not locate contract deployment block from this RPC. Ownership-cache discovery cannot proceed.');
-  return lo;
-}
-function transferTopics(){return [TRANSFER_TOPIC]}
-function applyTransferLog(owners,log){if(!log||!Array.isArray(log.topics)||log.topics.length<4)return 0;const to='0x'+log.topics[2].slice(-40).toLowerCase();const id=BigInt(log.topics[3]).toString();if(/^0x0{40}$/.test(to))delete owners[id];else owners[id]=to;return 1}
-async function getTransferLogs(from,to){
-  const filter={address:state.contract,fromBlock:'0x'+BigInt(from).toString(16),toBlock:'0x'+BigInt(to).toString(16),topics:transferTopics()};
-  try{return await rpc('eth_getLogs',[filter],{retries:4})}catch(error){
-    throw new Error(`Transfer-log cache scan failed for blocks ${from.toLocaleString()}–${to.toLocaleString()}: ${error.message||error}. No partial cache accepted.`);
-  }
-}
-async function replayTransferRange(cache,from,end,{full=false}={}){
-  if(from>end)return;
-  const window=2000,totalWindows=Math.ceil((end-from+1)/window);let windowIndex=0,events=0;
-  for(let start=from;start<=end;start+=window){
-    const to=Math.min(end,start+window-1);windowIndex++;
-    const logs=await getTransferLogs(start,to);
-    if(!Array.isArray(logs))throw new Error(`Transfer-log cache scan returned a non-array result for blocks ${start.toLocaleString()}–${to.toLocaleString()}.`);
-    for(const log of logs)events+=applyTransferLog(cache.owners,log);
-    const pct=28+33*(windowIndex/Math.max(totalWindows,1));
-    setStatus(`${full?'Building full':'Updating'} contract ownership cache… <b>${windowIndex}</b> / ${totalWindows} windows · <b>${Object.keys(cache.owners).length.toLocaleString()}</b> live token owners · <b>${events.toLocaleString()}</b> transfers applied`,'',pct);
-  }
-}
-async function buildFullOwnerCache(end){
-  const deployment=await findDeploymentBlock(end);
-  const cache={version:CACHE_VERSION,chainId:8453,contract:norm(state.contract),deploymentBlock:deployment,lastScannedBlock:deployment-1,owners:{},updatedAt:null};
-  setStatus(`No usable cache. Building a contract-wide ownership index from deployment block <b>${deployment.toLocaleString()}</b>. This first build is the slow one…`,'',27);
-  await replayTransferRange(cache,deployment,end,{full:true});
-  cache.lastScannedBlock=end;
-  return cache;
-}
-async function prepareOwnerCache(end,forceRebuild=false){
-  let cache=forceRebuild?null:loadOwnerCache(state.contract);
-  if(cache&&cache.lastScannedBlock>end)throw new Error(`Local cache is ahead of the current RPC head (${cache.lastScannedBlock.toLocaleString()} > ${end.toLocaleString()}). Use “Rebuild full cache” or a synchronized Base RPC.`);
-  if(!cache)return buildFullOwnerCache(end);
-  cache={...cache,owners:{...cache.owners}};
-  if(cache.lastScannedBlock<end){
-    const from=cache.lastScannedBlock+1;
-    setStatus(`Cache hit at block <b>${cache.lastScannedBlock.toLocaleString()}</b>. Scanning only <b>${(end-from+1).toLocaleString()}</b> newer blocks…`,'',30);
-    await replayTransferRange(cache,from,end,{full:false});
-    cache.lastScannedBlock=end;
-  }else setStatus(`Ownership cache already reaches pinned block <b>${end.toLocaleString()}</b>. Selecting your wallets from the local index…`,'',61);
-  return cache;
-}
-async function discoverByCachedTransferIndex(wallets,expected,{forceRebuild=false}={}){
-  const end=Number(BigInt(state.block));
-  const cache=await prepareOwnerCache(end,forceRebuild);
-  const wanted=new Map(wallets.map(w=>[norm(w.address),w])),owned=[];
-  for(const [id,owner] of Object.entries(cache.owners)){
-    const wallet=wanted.get(norm(owner));
-    if(wallet)owned.push({tokenId:bigToSafeNumber(BigInt(id),'cached token ID'),wallet});
-  }
-  owned.sort((a,b)=>a.tokenId-b.tokenId);
-  if(owned.length!==expected){
-    const mode=forceRebuild||!loadOwnerCache(state.contract)?'freshly rebuilt':'cached';
-    throw new Error(`Ownership-cache invariant mismatch: balanceOf() expects ${expected} deeds, but the ${mode} contract index maps ${owned.length} tokens to these wallets. Refusing the cache. Use “Rebuild full cache” if this was an incremental refresh.`);
-  }
-  state.pendingCache=cache;
-  state.discoveryMethod=forceRebuild?'rebuilt contract-wide Transfer cache + ownerOf':'contract-wide Transfer cache + ownerOf';
-  return owned;
-}
-async function verifyOwned(candidates,expected){const seen=new Set(),verified=[];for(let i=0;i<candidates.length;i++){const x=candidates[i];if(seen.has(x.tokenId))throw new Error(`Duplicate candidate token #${x.tokenId}.`);seen.add(x.tokenId);let owner;try{owner=decodeAddrResult(await ethCall(ownerData(x.tokenId)))}catch(e){throw new Error(`ownerOf(${x.tokenId}) verification failed: ${e.message||e}`)}if(norm(owner)!==norm(x.wallet.address))throw new Error(`ownerOf(${x.tokenId}) no longer matches ${x.wallet.label}.`);verified.push(x);setStatus(`Final ownerOf() verification… ${i+1}/${candidates.length}`,'',62+14*((i+1)/Math.max(candidates.length,1)))}if(verified.length!==expected)throw new Error(`Expected ${expected} deeds from balanceOf(), but verified ${verified.length}. Refusing a partial result.`);return verified}
-async function fetchJSON(url){const r=await fetch(url,{cache:'no-store',headers:{'Accept':'application/json'}});if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}
-async function metadataFor(tokenId,collectionName){let uri='',meta=null,source='',error='';try{uri=decodeAbiString(await ethCall(tokenURIData(tokenId)));if(uri){if(uri.startsWith('data:application/json;base64,')){meta=JSON.parse(atob(uri.slice(uri.indexOf(',')+1)));source='tokenURI data'}else if(uri.startsWith('data:application/json,')){meta=JSON.parse(decodeURIComponent(uri.slice(uri.indexOf(',')+1)));source='tokenURI data'}else{for(const u of ipfsUrls(uri)){try{meta=await fetchJSON(u);source='tokenURI';break}catch(e){error=e.message||String(e)}}}}}catch(e){error=e.message||String(e)}if(!meta){try{const j=await fetchJSON(`https://base.blockscout.com/api/v2/tokens/${state.contract}/instances/${tokenId}`);if(j?.metadata){meta=j.metadata;source='Blockscout';if(!meta.image&&j.image_url)meta.image=j.image_url;if(!meta.image&&j.media_url)meta.image=j.media_url}}catch(e){error=error||e.message||String(e)}}const traits={};for(const a of meta?.attributes||[]){const k=a.trait_type||a.type||a.key;if(k!=null&&a.value!=null)traits[String(k)]=String(a.value)}const imageCandidates=[meta?.image,meta?.image_url,meta?.imageUrl,meta?.animation_url].filter(Boolean);return{name:meta?.name||`${collectionName} #${tokenId}`,description:meta?.description||'',image:imageCandidates[0]||'',imageCandidates,traits,metadataSource:source||'',metadataError:error||(!meta?'metadata unavailable':null)}}
-async function loadMetadata(owned,collectionName){const deeds=[];const metaBatch=4;for(let i=0;i<owned.length;i+=metaBatch){const slice=owned.slice(i,i+metaBatch);const metas=await Promise.all(slice.map(async x=>{let tokenURI='';let rr=null;try{rr=await ethCall(tokenURIData(x.tokenId));tokenURI=decodeAbiString(rr)}catch{}let meta;try{meta=await metadataFor(x.tokenId,collectionName)}catch(e){meta={name:`${collectionName} #${x.tokenId}`,image:'',imageCandidates:[],traits:{},metadataError:e.message||String(e)}}return{...x,tokenURI,name:meta?.name||`${collectionName} #${x.tokenId}`,description:meta?.description||'',image:meta?.image||'',imageCandidates:meta?.imageCandidates||[],traits:meta?.traits||{},metadataSource:meta?.metadataSource||'',metadataError:meta?.metadataError||(rr?.error?'tokenURI read failed':null),artworkSource:'',artworkError:''}}));deeds.push(...metas);const done=Math.min(owned.length,i+metaBatch);setStatus(`Ownership complete. Loading artwork + traits… <b>${done}</b> / ${owned.length}`,'',82+(owned.length?17*(done/owned.length):17))}return deeds}
-async function scan(options={}){if(state.scanning)return;const forceCacheRebuild=!!options.forceCacheRebuild;try{state.scanning=true;state.scanComplete=false;els.scan.disabled=true;els.scan.textContent='Reading Base…';const wallets=parseWallets();const contract=els.contract.value.trim();if(!addrOK(contract))throw new Error('Invalid Lore Land contract address.');state.wallets=wallets;state.contract=contract;state.deeds=[];state.expected=null;state.walletBalances=new Map();state.discoveryMethod='';state.block=null;state.blockTag='latest';state.pendingCache=null;state.forceCacheRebuild=forceCacheRebuild;rebuildFilter();render();updateCacheUI();setStatus('Checking Base network and contract…','',2);const chain=await rpc('eth_chainId');if(hexToBig(chain)!==8453n)throw new Error(`Wrong network: RPC chain ID is ${hexToBig(chain)}; expected Base Mainnet 8453.`);const code=await rpc('eth_getCode',[contract,'latest']);if(!code||code==='0x')throw new Error('No contract bytecode found at this address on Base.');const blockHex=await rpc('eth_blockNumber');state.block=hexToBig(blockHex).toString();state.blockTag=blockHex;render();let collectionName='Lore Land Deed';try{collectionName=decodeAbiString(await ethCall('0x'+selectors.name))||collectionName}catch{}const expected=await readWalletBalances(wallets);if(expected===0){state.deeds=[];state.scanComplete=true;render();setStatus(`<span class="okTxt">Live Base refresh complete.</span> The <b>${wallets.length}</b> tracked wallets own <b>0</b> deeds at pinned block <b>${Number(state.block).toLocaleString()}</b>.`,'live',100);return}setStatus(`<b>balanceOf()</b> establishes an expected total of <b>${expected}</b> deeds. Discovering their token IDs…`,'',16);let owned=await discoverByOwnerIndex(wallets,expected);if(owned===null)owned=await discoverByGlobalEnumerable(wallets,expected);if(owned===null)owned=await discoverByCachedTransferIndex(wallets,expected,{forceRebuild:forceCacheRebuild});owned=await verifyOwned(owned,expected);if(owned.length!==expected)throw new Error(`Final invariant failed: expected ${expected}, verified ${owned.length}.`);if(state.pendingCache){saveOwnerCache(state.pendingCache);state.pendingCache=null}state.deeds=await loadMetadata(owned,collectionName);state.scanComplete=true;rebuildFilter();render();const missing=state.deeds.filter(d=>d.metadataError).length;setStatus(`<span class="okTxt">Ownership refresh complete.</span> Expected <b>${expected}</b> from wallet balances and independently verified <b>${state.deeds.length}</b> token owners at block <b>${Number(state.block).toLocaleString()}</b> using <b>${escapeHTML(state.discoveryMethod)}</b>. <span class="okTxt">Contract cache is indexed through this pinned block.</span>${missing?` <span class="warn">${missing} metadata record${missing===1?' is':'s are'} unavailable, but ownership is complete.</span>`:''}`,'live',100);localStorage.setItem('toadaidLoreVault.wallets',els.wallets.value);localStorage.setItem('toadaidLoreVault.contract',contract);localStorage.setItem('toadaidLoreVault.rpc',els.rpc.value.trim())}catch(e){console.error(e);state.scanComplete=false;state.deeds=[];rebuildFilter();render();setStatus(`<span class="errTxt">Refresh stopped:</span> ${escapeHTML(e.message||String(e))}`,'err',0)}finally{state.scanning=false;els.scan.disabled=false;els.scan.textContent='Refresh from Base'}}
-els.scan.addEventListener('click',()=>scan());els.rebuildCache.addEventListener('click',()=>{if(state.scanning)return;if(confirm('Rebuild the complete contract ownership cache from deployment? The existing cache stays untouched unless the rebuild succeeds.'))scan({forceCacheRebuild:true})});els.clearCache.addEventListener('click',()=>{if(state.scanning)return;if(confirm('Clear only the local contract ownership cache? Your wallet list will stay saved.')){deleteOwnerCache();setStatus('Contract ownership cache cleared. The next refresh will perform a full rebuild.','',0)}});els.clearServerArtworkCache.addEventListener('click',clearServerArtworkCache);els.contract.addEventListener('input',()=>{updateCacheUI();checkArtworkHelper()});els.save.addEventListener('click',()=>{try{parseWallets();localStorage.setItem('toadaidLoreVault.wallets',els.wallets.value);localStorage.setItem('toadaidLoreVault.contract',els.contract.value.trim());localStorage.setItem('toadaidLoreVault.rpc',els.rpc.value.trim());setStatus('Wallet list and chain-reader settings saved locally in this browser.','live',0)}catch(e){setStatus(escapeHTML(e.message),'err',0)}});els.clear.addEventListener('click',()=>{if(confirm('Clear the wallet list and current deed results?')){els.wallets.value='';state.wallets=[];state.deeds=[];state.expected=null;state.walletBalances=new Map();state.scanComplete=false;localStorage.removeItem('toadaidLoreVault.wallets');render();rebuildFilter();setStatus('Wallet list cleared.','',0)}});els.export.addEventListener('click',()=>{const cache=loadOwnerCache(state.contract);const data={title:'Tobyworld Lore Land Deed Viewer',chainId:8453,contract:state.contract,baseBlock:state.block,expectedFromBalances:state.expected,verifiedDeeds:state.deeds.length,discoveryMethod:state.discoveryMethod,ownershipComplete:state.scanComplete&&state.expected===state.deeds.length,cache:cache?{deploymentBlock:cache.deploymentBlock,lastScannedBlock:cache.lastScannedBlock,indexedLiveOwners:Object.keys(cache.owners).length,updatedAt:cache.updatedAt}:null,exportedAt:new Date().toISOString(),wallets:state.wallets.map(w=>({label:w.label,address:w.address,onChainBalance:state.walletBalances.get(norm(w.address))??null,deeds:state.deeds.filter(d=>norm(d.wallet.address)===norm(w.address)).map(d=>({tokenId:d.tokenId,name:d.name,tokenURI:d.tokenURI,image:d.image,traits:d.traits,metadataSource:d.metadataSource,metadataError:d.metadataError}))}))};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='tobyworld-lore-land-deed-viewer-snapshot.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)});els.search.addEventListener('input',render);els.walletFilter.addEventListener('change',render);els.mask.addEventListener('change',render);els.walletView.addEventListener('click',()=>{state.view='wallet';els.walletView.classList.add('active');els.galleryView.classList.remove('active');render()});els.galleryView.addEventListener('click',()=>{state.view='gallery';els.galleryView.classList.add('active');els.walletView.classList.remove('active');render()});(function boot(){const w=localStorage.getItem('toadaidLoreVault.wallets');const c=localStorage.getItem('toadaidLoreVault.contract');const r=localStorage.getItem('toadaidLoreVault.rpc');if(w)els.wallets.value=w;if(c)els.contract.value=c;if(r)els.rpc.value=r;render();updateCacheUI();checkArtworkHelper()})();
-</script>
+<script src="viewer-core.js"></script>
+<script src="viewer-app1.js"></script>
+<script src="viewer-app2.js"></script>
 </body>
 </html>
