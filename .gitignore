@@ -1,0 +1,15 @@
+# Local runtime/cache
+.lore-vault-cache/
+__pycache__/
+*.py[cod]
+
+# Local secrets/config
+.env
+.env.*
+!.env.example
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
