@@ -28,40 +28,6 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parent
-ENV_PATH = ROOT / ".env"
-_ENV_KEY_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
-
-
-def load_local_env(path: Path) -> bool:
-    """Load a small local .env file without adding a third-party dependency.
-
-    Existing process environment variables always win over values in .env.
-    Supported lines are KEY=VALUE or export KEY=VALUE; blank lines and #
-    comments are ignored. Matching single or double quotes around a value are
-    removed. The file is local-only and is ignored by Git.
-    """
-    if not path.is_file():
-        return False
-    for raw in path.read_text(encoding="utf-8-sig").splitlines():
-        line = raw.strip()
-        if not line or line.startswith("#"):
-            continue
-        if line.startswith("export "):
-            line = line[7:].lstrip()
-        if "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        key = key.strip()
-        value = value.strip()
-        if not _ENV_KEY_RE.fullmatch(key):
-            continue
-        if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
-            value = value[1:-1]
-        os.environ.setdefault(key, value)
-    return True
-
-
-DOTENV_LOADED = load_local_env(ENV_PATH)
 HOST = os.environ.get("HOST", "127.0.0.1")
 PORT = int(os.environ.get("PORT", "7777"))
 CHAIN = "base"
@@ -395,7 +361,6 @@ def main() -> int:
     url = f"http://{HOST}:{PORT}/"
     print(f"Tobyworld Lore Land Deed Viewer: {url}")
     print(f"Artwork cache: {CACHE_ROOT}")
-    print(f"Local .env: {'loaded' if DOTENV_LOADED else 'not found'}")
     print(f"OpenSea API key: {'available' if OPENSEA_KEY else 'not set; public item-page resolver will be tried'}")
     print("Press Ctrl+C to stop.")
     if OPEN_BROWSER:

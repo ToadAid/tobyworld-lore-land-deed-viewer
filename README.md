@@ -62,39 +62,6 @@ Then open <http://127.0.0.1:7777/>.
 
 The viewer works without a key by trying OpenSea's public item page / SeaDN path, but an API key makes artwork discovery more reliable.
 
-### Recommended: save it once in a local `.env`
-
-`serve-vault.py` automatically loads a `.env` file from the repository folder. Copy the included example, add your key once, and then use the normal launcher every time. Process environment variables take precedence over `.env` values.
-
-**Windows Command Prompt**
-
-```bat
-copy .env.example .env
-notepad .env
-```
-
-**Windows PowerShell**
-
-```powershell
-Copy-Item .env.example .env
-notepad .env
-```
-
-**Linux / macOS**
-
-```bash
-cp .env.example .env
-${EDITOR:-nano} .env
-```
-
-Set:
-
-```text
-OPENSEA_API_KEY=your-key-here
-```
-
-Then launch normally with `start-vault.bat`, `start-vault.ps1`, or `./start-vault.sh`. The `.env` file is already excluded by `.gitignore`.
-
 ### Normal OpenSea developer key
 
 1. Sign in at OpenSea.
@@ -116,9 +83,7 @@ curl -X POST https://api.opensea.io/api/v2/auth/keys
 
 Free instant keys are rate-limited and expire. If key creation returns HTTP `429`, wait for the creation-rate window to reset rather than repeatedly retrying.
 
-### Or use a session environment variable
-
-If you do not want a `.env` file, you can still set the key only for the current shell session.
+### Use the key without putting it in the code
 
 **Linux / macOS**
 
@@ -141,7 +106,7 @@ $env:OPENSEA_API_KEY='your-key-here'
 .\start-vault.ps1
 ```
 
-**Never paste a real API key into `index.html`, commit `.env`, commit a modified launcher containing the key, or include the key in a shared screenshot.**
+**Never paste a real API key into `index.html`, commit it to GitHub, or include it in a shared screenshot.**
 
 ## First scan vs later scans
 
